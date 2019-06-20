@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>DaumPostCodeRN</title>
+        <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
+        <script>
+          daum.postcode.load(function() {
+            var element_wrap = document.getElementById('wrap')
+            new daum.Postcode({
+              oncomplete: function(data) {
+                window.ReactNativeWebView.postMessage(JSON.stringify(data))
+              },
+              onresize: function(size) {
+                element_wrap.style.height = size.height + 'px'
+              },
+              width: '100%',
+              height: '100%',
+            }).embed(element_wrap)
+          })
+        </script>
+    </head>
+    <body>
+        <div id="wrap" style="width: 100%;"></div>
+    </body>
+</html>
